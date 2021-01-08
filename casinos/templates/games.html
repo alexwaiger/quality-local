@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load cut_url %}
+<!-- HEAD -->
+{% block head %}
+	{% if country %}
+		<title>{% trans 'Best Casino Games in' %} {{ country.name }} — QualityCasinos.info</title>
+		<meta name="description" content="{% trans 'List of the highest quality online casinos in'%} {{ country.name }} {% trans 'by number of games and software providers. Choose the best' %} {{ country.adj_name }} {% trans 'casinos for slots, roulette or live dealer games' %}. — QualityCasinos.info">
+	{% else %}
+		<title>{% trans 'Best Casino Games in' %} {% now "Y" %} — QualityCasinos.info</title>
+		<meta name="description" content="{% trans 'List of the highest quality online casinos by number of games and software providers. Choose the best casinos for slots, card games, roulette or live dealer games' %} — QualityCasinos.info">
+	{% endif %}
+	
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			{% if country %}
+				<meta name="twitter:title" content="{% trans 'Best Casino Games in' %} {{ country.name }} — QualityCasinos.info" />
+				<meta name="twitter:description" content="{% trans 'List of the highest quality online casinos in'%} {{ country.name }} {% trans 'by number of games and software providers. Choose the best' %} {{ country.adj_name }} {% trans 'casinos for slots, roulette or live dealer games' %}." />
+			{% else %}
+				<meta name="twitter:title" content="{% trans 'Best Casino Games in' %} {% now 'Y' %} — QualityCasinos.info" />
+				<meta name="twitter:description" content="{% trans 'List of the highest quality online casinos by number of games and software providers. Choose the best casinos for slots, card games, roulette or live dealer games' %}." />
+			{% endif %}
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+	
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			
+			{% if country %}
+				<meta property="og:title" content="{% trans 'Best Games in' %} {{ country.name }} — QualityCasinos.info" >
+				<meta property="og:description" content="{% trans 'List of the highest quality online casinos in'%} {{ country.name }} {% trans 'by number of games and software providers. Choose the best' %} {{ country.adj_name }} {% trans 'casinos for slots, roulette or live dealer games' %}.">
+				<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/{{ country.slug }}/best-games/">
+			{% else %}
+				<meta property="og:title" content="{% trans 'Best Casino Games in' %} {% now 'Y' %} — QualityCasinos.info" >
+				<meta property="og:description" content="{% trans 'List of the highest quality online casinos by number of games and software providers. Choose the best casinos for slots, card games, roulette or live dealer games' %}.">
+				<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/best-games/">
+			{% endif %}
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			{% if country %}
+				<h1>{% trans 'Best Casino Games in' %} {{ country.name }}</h1>
+				<div class="blockquote">
+					<p>{% trans 'List of the best online casinos in'%} {{ country.name }} {% trans 'sort by number and quality of games. Only reputable software providers for' %} {{ country.adj_name }} {% trans 'online casinos' %}.</p>
+					<span class="cite">{% trans 'Top' %} {{ objects.count }} {{ country.adj_name }} {% trans 'Online Casinos by Bonuses' %}</span>
+					{% if country.logo %}
+						<!--<span class="img anim-rotate">
+							<img src="/media/img/country-bg.png" alt="Quality Guarantee" title="Quality Guarantee" />
+						</span>-->
+						<span class="img anim-norotate">
+							<img src="{{ country.logo.url }}" alt="{{ country.name }}" title="{{ country.name }}" />
+						</span>
+					{% endif %}
+				</div>
+				<div  class="main-description">
+					<p>
+						{% trans 'All presented' %} {{ country.adj_name }} {% trans 'casinos have only high-quality licensed games that have passed manual verification and certification. Choose the best of them and play your favorite games without fear of forgery' %}.
+					</p>
+				</div>				
+				<div class="main-filters">
+					<ul><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}">Quality</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-bonuses/">Bonuses</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-payouts/">Payouts</a></li><!--
+						--><li><a class="active" href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-games/">Games</a></li><!--
+					--></ul>
+				</div>
+			{% else %}
+				<h1>{% trans 'Best Online Casino Games' %}</h1>
+				<div class="blockquote">
+					<p>{% trans 'List of the best rated online casinos by number and quality of games. Only reputable, reliable and licensed software providers' %}.</p>
+					<span class="cite">{% trans 'Top' %} {{ objects.count }} {% trans 'Online Casinos by Games' %}</span>
+					  <div class="anim_wrapper">
+						  <span class="img anim-rotate">
+							<img src="/media/img/quality-bg.png" alt="Quality Guarantee" title="Quality Guarantee" />
+						  </span>
+					  </div>
+					  <span class="img anim-norotate">
+						<img src="/media/img/quality.png" alt="Quality Guarantee" title="Quality Guarantee" />
+					  </span>
+				</div>
+				<div  class="main-description">
+					<p>
+						{% trans 'All presented casinos have only high-quality licensed games that have passed manual verification and certification. Choose the best of them and play your favorite games without fear of forgery' %}.
+					</p>
+				</div>
+				<div class="main-filters">
+					<ul><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/">Quality</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/best-bonuses/">Bonuses</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/best-payouts/">Payouts</a></li><!--
+						--><li><a class="active" href="/{{ LANGUAGE_CODE }}/best-games/">Games</a></li><!--
+					--></ul>
+				</div>
+			{% endif %}
+		{% endblock %}
+		
+		{% block main %}
+			<ul class="list">
+				{% for obj in objects %}<!-- Online Casino List Item
+					--><li class="item">
+						<div class="title">
+							<span class="position">{{ forloop.counter }}</span>
+							<span><h2>{{ obj.name }}</h2></span>
+							<span class="quality"><span class="text">{% trans 'Games Score' %}</span><span class="score">{{ obj.games_score.0 }}.{{ obj.games_score.1 }}</span></span>
+							<a href="#openModal{{ obj.id }}"><img class="dotes" src="/media/img/icons/dotes.png" alt="{{ obj.name }} casino menu"/></a>
+						</div>
+						<div class="image">
+							<a class="logo-link" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">
+							<img class="logo"
+							{% if obj.logo_color %}
+								style="background:#{{ obj.logo_color }};"
+							{% else %}
+								style="background:#000000;"
+							{% endif %}
+							src="{{ obj.logo.url }}" alt="{{ obj.name }} logo"/>
+							</a>
+							{% if obj.badge and obj.badge != '0' %}
+							<div class="badge">
+								{% if obj.badge == 'win' and obj.winner %}
+									<a href="{{ obj.winner }}" rel="nofollow" target="_blank">
+								{% endif %}
+									<img src="/media/img/icons/badges/{{ obj.badge }}.png" alt="{{ obj.badge }}"/>
+								{% if obj.badge == 'win' and obj.winner %}
+									</a>
+								{% endif %}
+							</div>
+							{% endif %}
+							<div class="rating-stars">
+								<img class="stars" src="/media/img/icons/stars/star-{{ obj.games_score }}.png" alt="Rating" />
+							</div>							
+							<div class="ankor">
+								<a href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Go to Website</a>
+							</div>
+						</div>
+						<div class="item-wrapper">
+							<div class="item-info">
+								<div class="item-left">
+									<ul>
+										{% if obj.fb or obj.twitter or obj.instagram %}
+										<li>Social<br/>Media</li>
+										{% endif %}
+										{% if obj.fb %}
+											<li>
+												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
+											</li>
+										{% endif %}									
+										{% if obj.twitter %}
+											<li>
+												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
+											</li>
+										{% endif %}
+										{% if obj.instagram %}
+											<li>
+												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
+											</li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="item-right">
+									<ul>
+										<li>Valid<br/>License</li>
+										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
+										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="item-info">
+								<div class="item-left">
+									<ul>
+										<li>Available<br/>Countries</li>
+									</ul>
+								</div>
+								<div class="item-right">
+									<ul>
+										{% for c in obj.country.all %}
+										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="item-info"> 
+								<div class="item-left games">
+									{% if obj.games %}
+									<ul>
+										<li>Games<br/>Count</li>
+										<li class="item-games">{{ obj.games }}+</li>
+									</ul>
+									{% endif %}
+								</div>
+								<div class="item-right">
+									{% if obj.bonus and obj.limit %}
+									<ul>
+										<li>Welcome<br/>Bonus</li>
+										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
+										<li class="item-bonus">{{ obj.limit }}€</li>
+									</ul>
+									{% endif %}
+								</div>								
+							</div>							
+						</div>
+						
+						<div class="buttons">
+							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">Review</a>
+							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Play Now</a>
+						</div>
+						
+						<!--<div><p>{{ obj.description }}</p></div>-->
+						<!-- MODAL -->
+						<div id="openModal{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_main.html' %}
+						</div>
+						<!-- MODAL LICENSE -->
+						<div id="openModalLicense{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_license.html' %}
+						</div>
+						<!-- MODAL 18+ -->
+						<div id="openModalAlert{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_18.html' %}
+						</div>					
+						<!-- END MODAL -->
+					</li><!--Online Casino List Item end
+				-->{% endfor %}
+			</ul>
+		{% endblock %}
+		
+			{% block main_content %}
+				<div class="text-content">
+				{% if country %}
+						<h2>{% trans 'Top' %} {{ country.adj_name }} {% trans 'online casino games' %}</h2>
+						<p>
+						{% trans 'All games in all offered online casinos in' %} {{ country.name }} {% trans 'are original licensed versions. The highest position in the ranking is occupied by' %} {{ country.adj_name }} {% trans 'online casinos with the largest variety of games and software providers' %}.
+						</p>
+				{% else %}
+						<h2>{% trans 'Top online casino games' %}</h2>
+						<p>
+						{% trans 'All games in all offered online casinos are original licensed versions. The highest position in the ranking is occupied by online casinos with the largest variety of games and software providers' %}.
+						</p>
+				{% endif %}
+				</div>
+			{% endblock %}		
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

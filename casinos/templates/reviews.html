@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans 'Online Casinos Reviews' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'Independent expert reviews of online casinos around the world. Complete information about all important aspects of the operation of gambling establishments on the World Wide Web' %}.">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% trans 'Online Casinos Reviews' %} — QualityCasinos.info" />
+			<meta name="twitter:description" content="{% trans 'Independent expert reviews of online casinos around the world. Complete information about all important aspects of the operation of gambling establishments on the World Wide Web' %}." />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% trans 'Online Casinos Reviews' %} — QualityCasinos.info">
+			<meta property="og:description" content="{% trans 'Independent expert reviews of online casinos around the world. Complete information about all important aspects of the operation of gambling establishments on the World Wide Web' %}.">
+			<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/reviews/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans 'Best Online Casino Reviews' %}</h1>
+		{% endblock %}
+		
+		{% block main %}
+		<div class="list_reviews">
+			<ul>
+				{% for obj in objects %}
+				<li><a href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/"><img style="background-color:#{% if obj.logo_color %}{{ obj.logo_color }}{% else %}000000{% endif %};" src="{{ obj.logo.url }}" alt="{{ obj.name }} Casino" /></a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

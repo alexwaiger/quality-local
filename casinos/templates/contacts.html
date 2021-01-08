@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans 'Contacts' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'Gambling Quality Control Company Contacts and Feedback Form. You can contact us via email or through social media profiles.' %} — QualityCasinos.info">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% trans 'Contacts' %} — QualityCasinos.info" />
+			<meta name="twitter:description" content="{% trans 'Gambling Quality Control Company Contacts and Feedback Form. You can contact us via email or through social media profiles.' %} — QualityCasinos.info" />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% trans 'Contacts' %} — QualityCasinos.info">
+			<meta property="og:description" content="{% trans 'Gambling Quality Control Company Contacts and Feedback Form. You can contact us via email or through social media profiles.' %} — QualityCasinos.info">
+			<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/contacts/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans 'Contacts' %}</h1>
+		{% endblock %}
+		
+		{% block main %}
+			<div class="contact-page">
+				<p>{% trans 'You can always contact us by emails' %}:</p>
+					<ul>
+						<li><a href="mailto:admin@qualitycasinos.info">admin@qualitycasinos.info</a></li>
+						<li><a href="mailto:support@qualitycasinos.info">support@qualitycasinos.info</a></li>
+					</ul>
+				<p>{% trans 'We are also always available for communication through our social media profiles' %}:</p>
+						<ul class="soc">
+							<li><a href="https://www.behance.net/alexweidger" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/be.png" alt="Behance" title="Behance" /></a></li>
+							<li><a href="https://twitter.com/AlexWeidger" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/tw.png" alt="Twitter" title="Twitter" /></a></li>
+							<li><a href="https://pinterest.com/alexweidger/" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/pi.png" alt="Pinterest" title="Pinterest" /></a></li>
+							<li><a href="https://www.youtube.com/channel/UCKraDVUr1zSu_5vv54wTX1A" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/yt.png" alt="YouTube" title="YouTube" /></a></li>
+							<li><a href="https://www.facebook.com/alexander.weidger/" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/fb.png" alt="Facebook" title="Facebook" /></a></li>
+						</ul>
+				<p>{% trans 'Or contact us via the feedback form' %}:</p>
+				
+					<form name="contacts" action="/send/" method="post">
+					{% csrf_token %}
+						<p>
+							<label for="name">{% trans 'Name' %}</label>
+							<input class="input" name="name" ENGINE="text"  />
+						</p>
+						<p>
+							<label for="email">{% trans 'Email' %}</label>
+							<input class="input" name="email" type="text"  />
+						</p>
+						<p>
+							<label for="body">{% trans 'Your message' %}</label>
+							<textarea name="body" cols="1" rows="5"  /></textarea>
+						</p>
+						<p>
+							<input id="submit" value="{% trans 'Send' %}" type="submit" />
+						</p>
+					</form>
+			</div>
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

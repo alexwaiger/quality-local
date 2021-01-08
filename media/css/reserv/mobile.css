@@ -1,0 +1,68 @@
+/* CSS */
+@media screen and (max-width: 680px) {
+	#sitename .site-title-wrap {
+		font-size: 1.3em;
+		margin: 3px 0;
+	}
+	/* FOOTER */
+	#footer {
+		font-size: 12px;
+	}
+	.main-head {
+		padding-top: 5px;
+	}
+	.site-title {
+		font-size: 20px;
+	}
+	.list li.item .buttons a {
+		min-width: 100px;
+		font-size: 14px;
+	}
+	.ad-menu ul {
+		top: 48px;
+	}
+	.lang-img {
+		top: -2px;
+	}
+	blockquote img {
+		width: 100px;
+		bottom: 10px;
+	}
+	blockquote p {
+		max-width: 350px;
+	}
+}
+	
+@media screen and (max-width: 382px) {
+	.list li.item .buttons a {
+		min-width: 80px;
+		font-size: 12px;
+		height: 36px;
+		line-height: 34px;
+		margin: 0 5px 5px 0;
+	}
+	.list li.item .item-wrapper {
+		margin-bottom: 48px;
+	}
+	.list li.item .item-wrapper .item-info .item-left ul li img {
+		width: 18px;
+		margin-left: 0;
+	}
+	.list li.item .item-wrapper .item-info .item-right ul li img {
+		width: 18px;
+		margin-left: 0;
+	}
+	.main-filters ul li a {
+		font-size: 11px;
+		line-height: 18px;
+	}
+	.list li.item .image .badge {
+		width: 40px;
+	}
+	.list li.item .item-wrapper .item-info .games {
+		display: none;
+	}
+	ul.social li a img {
+		margin: 5px 7px 25px 0px;
+	}
+}

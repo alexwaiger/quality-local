@@ -1,0 +1,288 @@
+{% load i18n %}
+{% load cut_url %}
+<!doctype html>
+<html lang="{% if request.LANGUAGE_CODE == 'au' %}en-au{% elif request.LANGUAGE_CODE == 'en' %}en-gb{% elif request.LANGUAGE_CODE == 'ca' %}en-ca{% elif request.LANGUAGE_CODE == 'us' %}en-us{% else %}{{ request.LANGUAGE_CODE }}{% endif %}">
+	<head>
+		<meta charset="utf-8">
+		
+		<link rel="preload" href="/media/css/styles.css" as="style">
+		<link rel="preload" href="/media/css/default.css" as="style">
+		
+		<link rel="dns-prefetch" href="//fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+		
+		    <script type="application/ld+json">
+			{
+			  "@context": "https://schema.org",
+			  "@type": "Organization",
+			  "url": "https://qualitycasinos.info/",
+			  "logo": "https://qualitycasinos.info/media/img/quality-casinos-logo.png"
+			}
+			</script>
+		
+		{% block head %}
+			<title>QualityCasinos.info</title>
+			<meta name="description" content="The best quality casinos online">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="Website Under Developing" />
+			<meta name="twitter:description" content="View the album on Quality" />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="The Best Quality Casinos">
+			<meta property="og:description" content="The best quality casinos online">
+			<meta property="og:url" content="https://qualitycasinos.info/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+		{% endblock %}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="Alex Weidger">
+		
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="canonical" href="https://qualitycasinos.info{{ request.path }}">
+		
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+				margin: 0;
+				#background: #cbeeff;
+				background: url('/media/img/bg-q.jpg') repeat center fixed;
+				text-align: center;
+				color: #000000;
+				cursor: default;
+			}
+			#pagewrap {
+				max-width: 1280px;
+				margin: 0 auto;
+				padding: 0;
+				overflow: hidden;
+			}
+			#header {
+				height: 51px;
+				background: linear-gradient(120deg, #05489D 0%, #152059 100%);
+				border-bottom: 1px solid #000000;
+				position: fixed;
+				left: 0;
+				right: 0;
+				width: 100%;
+				z-index: 9999;
+			}
+			#content {
+				padding: 51px 10px 5px;
+				min-height: 100vh;
+			}
+			#footer {
+				margin-top: 10px;
+				padding: 5px 10px;
+				background: linear-gradient(120deg,#05489d 0%,#152059 100%);
+				color: #ffffff;
+				font-size: 12px;
+			}
+			#sitename {
+				max-width: 1280px;
+				position: relative;
+				margin: 0 auto;
+			}			
+			#sitename .site-title {
+				font-family: 'Cinzel', serif;
+				color: #FFD740;
+				text-shadow: 1px 1px 1px rgba(0,0,0,1);
+			}
+			h1, .h1 {
+				font-family: 'Roboto Slab', serif;
+				font-size: 1.2em;
+				font-weight: bold;
+				text-align: center;
+				color: #05489d;
+
+			}
+			h2, .h2, h3, .h3 {
+				font-family: 'Roboto Slab', serif;
+				font-weight: bold;
+				text-align: center;
+			}
+			h2, .h2 {
+				font-size: 1em;
+			}
+			h3, .h3 {
+				font-size: 0.9em;
+			}
+			h4, .h4 {
+				font-size: 0.85em;
+			}
+			p {
+				color: #000000;
+				font-size: 0.8em;
+				line-height: 1.2em;
+			}
+			a {
+				color: #FFD740;
+				text-decoration: none;
+			}
+			.main-description p {
+				margin: 15px 0 10px;
+				text-align: justify;
+				font-size: 0.8em;
+				line-height: 1.5em;
+				padding: 0 15px;
+			}
+			#top-menu ul, #footer-menu ul {
+				didplay: block;
+				font-weight: 700;
+			}
+			#footer-menu ul li {
+				margin: 10px;
+			}
+			#top-menu ul li, #footer-menu ul li {
+				display: inline-block;
+			}
+		</style>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/media/css/styles.css" rel="stylesheet">
+		
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&text=OnlyBestQualityCasinosSoftwareProvidersPaymentMethods" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Roboto+Slab:wght@400;600&display=swap" rel="stylesheet">  
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-GRFTDNR0LY"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			
+			gtag('config', 'G-GRFTDNR0LY');
+		</script>
+	</head>
+	<body>
+		<div id="pagewrap">
+			<header id="header">
+			{% block header %}
+				<hgroup id="sitename">
+					<div class="site-title-wrap"><a class="site-title" href="/{{ LANGUAGE_CODE }}/">Quality Casinos</a></div>
+				
+				<div class="ad-menu">
+					<nav id="top-menu" class='nav' tabindex='1'>
+					<img class="lang-img" src="/media/img/icons/lang.png" alt="Languages" title="Choose Language"/>
+						<ul class="menu">
+							<div class="lang-menu-title">{% trans 'Choose your language please' %}</div>
+							{% for lang in LANGUAGES %}
+								<li
+								{% if lang.0 == LANGUAGE_CODE %}
+									class="active"
+								{% endif %}
+								>
+									<form name="setLang{{ lang.0}}" action="/i18n/setlang/" method="POST">
+										{% csrf_token %}
+										<input name="next" type="hidden" value="/{{ lang.0 }}/{{ request.path | get_nonlang_url }}">
+										<input type="hidden" name="language" value="{{ lang.0 }}">
+										<a href="/{{ lang.0 }}/{{ request.path | get_nonlang_url }}" onclick="document.setLang{{ lang.0 }}.submit();
+											return false;">{{ lang.1}}</a>
+									</form>
+								</li>
+							{% endfor %}
+						</ul>
+					</nav>
+					
+				</div>				
+				</hgroup>
+
+				
+					<div class="menu_block">
+						<div class="menu_icon">
+							<img class="menu-img" src="/media/img/icons/menu.png" alt="Menu"/>
+						</div>
+					</div>
+			{% endblock %}
+			</header>
+			<aside class="menu-mobile--itself">
+						<div class="close">
+							<img class="menu-img" src="/media/img/icons/menu-x.png" alt="Close menu"/>
+						</div>
+						<h2 class="top">{% trans 'Only Best Quality' %}</h2>
+						<ul class="side-menu line">
+							{% for land in countries %}
+								<li><a {% if country == land %}class="active"{% endif %} href="/{{ LANGUAGE_CODE }}/{{ land.slug }}/"><img src="{{ land.flag.url }}" alt="{{ land.name }}" />{{ land.menu_name }}</a></li>
+							{% endfor %}
+						</ul>
+						<ul class="side-menu line ">
+							<li><a href="/{{ LANGUAGE_CODE }}/black-list/">{% trans 'Online Casino Black List' %}</a></li>
+							<li><a href="/{{ LANGUAGE_CODE }}/reviews/">{% trans 'Online Casino Reviews' %}</a></li>
+						</ul>
+						<ul class="side-menu social">
+							<li><a href="https://www.behance.net/alexweidger" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/be.png" alt="Behance" title="Behance" /></a></li>
+							<li><a href="https://twitter.com/AlexWeidger" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/tw.png" alt="Twitter" title="Twitter" /></a></li>
+							<li><a href="https://pinterest.com/alexweidger/" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/pi.png" alt="Pinterest" title="Pinterest" /></a></li>
+							<li><a href="https://www.youtube.com/channel/UCKraDVUr1zSu_5vv54wTX1A" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/yt.png" alt="YouTube" title="YouTube" /></a></li>
+							<li><a href="https://www.facebook.com/alexander.weidger/" target="_blank" rel="nofollow" ><img src="/media/img/icons/social/web/fb.png" alt="Facebook" title="Facebook" /></a></li>
+						</ul>
+			</aside>
+			<main id="content">
+				<div class="main-head">
+					{% block main_head %}
+					{% endblock %}
+				</div>
+					{% block main %}
+					{% endblock %}
+				<div class="main-content">
+					{% block main_content %}
+					{% endblock %}
+				</div>
+			</main>
+			<aside class="side-providers">
+				<h2 class="top">{% trans 'Software Providers' %}</h2>
+				<ul>
+					{% for pro in providers %}
+						<li><img src="{{ pro.logo.url }}" alt="{{ pro.name }}"/></li>
+					{% endfor %}
+				</ul>
+			</aside>
+			<aside class="side-providers">	
+				<h2 class="top">{% trans 'Payment Methods' %}</h2>
+				<ul>
+					{% for pay in payments %}
+						<li><img src="{{ pay.logo.url }}" alt="{{ pay.name }}"/></li>
+					{% endfor %}
+				</ul>
+			</aside>			
+			<div style="clear: both;"></div>
+			<footer id="footer">
+			{% block footer %}
+				<div class="providers">
+				</div>
+				<nav id="footer-menu">
+					<ul class="menu">
+						<li><a href="{% if LANGUAGE_CODE == 'en' %}/{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">{% trans 'Home' %}</a></li>
+						<li><a href="/{{ LANGUAGE_CODE }}/about/">{% trans 'About' %}</a></li>
+						<li><a href="/{{ LANGUAGE_CODE }}/sitemap/">{% trans 'Sitemap' %}</a></li>
+						<li><a href="/{{ LANGUAGE_CODE }}/privacy/">{% trans 'Privacy' %}</a></li>
+						<li><a href="/{{ LANGUAGE_CODE }}/contacts/">{% trans 'Contacts' %}</a></li>
+					</ul>
+				</nav>
+				<div class="copyright">
+					© 2019-{% now 'Y' %} <a href="{% if LANGUAGE_CODE == 'en' %}/{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">{% trans 'Quality Casinos' %}</a>
+				</div>
+				<div>
+					{% trans 'All right reserved.' %}
+				</div>
+			{% endblock %}
+			</footer>
+		</div>
+		
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$('.menu_icon, .close').on('click', function(){
+		$('.menu-mobile--itself').toggleClass('show')
+	})
+	</script>
+	{% block script %}
+	{% endblock %}
+	</body>
+</html>

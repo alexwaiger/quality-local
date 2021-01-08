@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load cut_url %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.name }} {% trans 'Online Casino Review' %} — QualityCasinos.info{% endif %}</title>
+	<meta name="description" content="{% if object.seo_description %}{{ object.seo_description }}{% else %}{% trans 'Learn all about casino' %} {{ object.name }} {% trans '— Deposit and withdrawal methods, technical support, languages, currencies, bonuses and much more.' %} — QualityCasinos.info{% endif %}">
+	
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.name }} {% trans 'Online Casino Full Review' %}{% endif %}" />
+			<meta name="twitter:description" content="{% if object.seo_description %}{{ object.seo_description }}{% else %}{% trans 'Learn all about casino' %} {{ object.name }} {% trans '— Deposit and withdrawal methods, technical support, languages, currencies, bonuses and much more.' %} — QualityCasinos.info{% endif %}" />
+			<meta name="twitter:image" content="https://qualitycasinos.info{{ object.logo.url }}" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+	
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% if object.seo_title %}{{ object.seo_title }}{% else %}{{ object.name }} {% trans 'Online Casino Full Review' %}{% endif %}">
+			<meta property="og:description" content="{% if object.seo_description %}{{ object.seo_description }}{% else %}{% trans 'Learn all about casino' %} {{ object.name }} {% trans '— Deposit and withdrawal methods, technical support, languages, currencies, bonuses and much more.' %} — QualityCasinos.info{% endif %}">
+			<meta property="og:url" content="https://qualitycasinos.info{{ request.path }}">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info{{ object.logo.url }}">
+			<meta property="og:image:width" content="240">
+			<meta property="og:image:height" content="240">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+		<div class="review_head">
+			<div class="review_title">
+				<h1>{{ object.name }} {% trans 'Casino Review' %}</h1>
+			</div>
+			<div class="review_logo_wrap">
+				<a class="logo_link" href="{{ object.id | aff:usr_id }}" target="_blank" rel="nofollow"><img class="review_logo" style="background-color:#{% if object.logo_color %}{{ object.logo_color }}{% else %}000000{% endif %};" src="{{ object.logo.url }}" alt="{{ object.name }} {% trans 'casino' %}" title="{{ object.name }} {% trans 'casino' %}" /></a>
+				{% if object.badge and object.badge != '0' %}
+					{% if object.badge == 'win' and object.winner %}
+						<a href="{{ object.winner }}" rel="nofollow" target="_blank"><img class="review_badge" src="/media/img/icons/badges/{{ object.badge }}.png" alt="{{ object.badge }}" /></a>
+					{% else %}
+						<img class="review_badge" src="/media/img/icons/badges/{{ object.badge }}.png" alt="{{ object.badge }}" />
+					{% endif %}
+				{% endif %}
+				<div class="review_social">
+					<ul>
+						{% if object.fb %}
+							<li><a href="{{ object.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="{% trans 'Facebook Page' %}" /></a></li>
+						{% endif %}			
+						{% if object.twitter %}
+							<li><a href="{{ object.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="{% trans 'Twitter Page' %}" /></a></li>
+						{% endif %}
+						{% if object.instagram %}
+							<li><a href="{{ object.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="{% trans 'Instagram Page' %}" /></a></li>
+						{% endif %}
+					</ul>
+				</div>				
+			</div>
+			
+			<div class="review_rating">
+				<table>
+					<tbody>
+						<tr>
+							<td><h4>Quality</h4><img src="/media/img/icons/stars/star-{{ object.trust_score }}.png" alt="{{ object.name }] {% trans 'Casino Rating' %}" title="{{ object.name }] {% trans 'Casino Rating' %}" /></td>
+							<td><h4>Bonuses</h4><img src="/media/img/icons/stars/star-{{ object.games_score }}.png" alt="{{ object.name }] {% trans 'Casino Rating' %}" title="{{ object.name }] {% trans 'Casino Rating' %}" /></td>
+						</tr>
+						<tr>
+							<td><h4>Payouts</h4><img src="/media/img/icons/stars/star-{{ object.bonus_score }}.png" alt="{{ object.name }] {% trans 'Casino Rating' %}" title="{{ object.name }] {% trans 'Casino Rating' %}" /></td>
+							<td><h4>Games</h4><img src="/media/img/icons/stars/star-{{ object.support_score }}.png" alt="{{ object.name }] {% trans 'Casino Rating' %}" title="{{ object.name }] {% trans 'Casino Rating' %}" /></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>			
+		</div>
+		{% endblock %}
+			
+		{% block main %}
+		<div class="review_wrap">
+
+			<div class="review_bonus">
+				<h2>{% trans 'Welcome Bonus' %}</h2>
+				<div class="bonus"><span>{{ object.bonus }}%</span> {% trans 'Up to' %} <span>{{ object.limit }}</span></div>
+				<div class="review_buttons">
+					<a class="hover-glow" href="{% if object.bonus_link %}{{ object.bonus_link }}{% else %}{{ object.id | aff:usr_id }}{% endif %}">{% trans 'Claim Bonus' %}</a>
+					<a class="hover-glow" href="{{ object.id | aff:usr_id }}">{% trans 'Play Now' %} ►</a>
+				</div>
+				<div style="clear: both; padding: 0;"></div>
+			</div>
+			
+			<div class="review_countries">
+				<h2>{% trans 'Accepted Countries' %}</h2>
+				<p>{{ object.name }} {% trans 'online casino is accepted in more them' %} {{ object.country.count }} {% trans 'countries' %}. {% trans 'Click on the icons below to find out what place the' %} {{ object.name }} {% trans 'casino occupies in the ranking of these countries' %}.</p>
+					<ul>
+					{% for obj in object.country.all %}
+						<li><a href="/{{ LANGUAGE_CODE }}/{{ obj.slug }}/"><img src="{{ obj.flag.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{{ obj.name }}</a></li>
+					{% endfor %}
+					</ul>
+			</div>
+			
+			<div class="review_currencies">
+				<h2>{% trans 'Accepted Currencies' %}</h2>
+				<p></p>
+					<ul>
+					{% for obj in object.currency.all %}
+						<li>{% if obj.logo %}<img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{% else %}{{ obj.name }}{% endif %}</li>
+					{% endfor %}
+					</ul>
+			</div>
+			
+			<div class="review_software">
+				<h2>{% trans 'Software Providers' %}</h2>
+				<p></p>
+					<ul>
+					{% for obj in object.soft.all %}
+						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" /></li>
+					{% endfor %}
+					</ul>
+			</div>
+			
+			<div class="review_payments">
+				<h2>{% trans 'Payment Methods' %}</h2>
+				<p></p>
+					<ul>
+					{% for obj in object.pay.all %}
+						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" /></li>
+					{% endfor %}
+					</ul>
+			</div>
+
+			<div class="review_withdraw">
+				<h2>{% trans 'Withdraw Methods' %}</h2>
+				<p></p>
+					<ul>
+					{% for obj in object.withdraw.all %}
+						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" /></li>
+					{% endfor %}
+					</ul>
+			</div>
+			
+			<div class="review_game_types">
+				<h2>{% trans 'Casino Games' %}</h2>
+				<p>{{ object.name }} {% trans 'casino has more than' %} {{ object.games }} {% trans 'high-quality licensed games. You can see the list of' %} {{ object.name }} {% trans 'casino games category below' %}.</p>
+					<ul>
+					{% for obj in object.game_types.all %}
+						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{{ obj.name }}</li>
+					{% endfor %}
+					</ul>
+			</div>
+			
+			<div class="review_info">			
+				<h2>{% trans 'Other Information' %}</h2>
+				{% if object.text %}
+				<p>{{ object.text }}</p>
+				{% endif %}
+				<ul>
+				{% if object.games %}
+					<li>{{ object.games }}+ {% trans 'quality casino games' %}</li>
+				{% endif %}
+				{% if object.mobile %}
+					<li>{% trans 'Quality Mobile version' %}</li>
+				{% endif %}
+				{% if object.live %}
+					<li>{% trans '24/7 Live Chat' %}</li>
+				{% endif %}
+				{% if object.fun %}
+					<li>{% trans 'Free Demo Games' %}</li>
+				{% endif %}				
+				</ul>
+			</div>
+		</div>
+		{% endblock %}
+
+		{% block main_content %}
+			<p>{% trans 'The' %} {{ object.name }} {% trans 'casino review is compiled by independent gambling experts. Best quality guaranteed. The last check was carried out on' %} {{ object.review_date | date:"E Y" }}</p>
+		{% endblock %}
+	<!-- END CONTENT -->
+	
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

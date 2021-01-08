@@ -1,0 +1,83 @@
+/* CSS */
+@media screen and (min-width: 1280px) {
+	.ad-menu li {
+		width: 40%;
+		padding: 5px 0;
+	}
+	.menu_block {
+		display: none;
+	}
+	.site-title {
+		font-size: 24px;
+		line-height: 50px !important;
+	}
+	.main-filters ul li:first-child {
+		padding-left: 4px;
+	}
+	.main-filters ul li:last-child {
+		padding-right: 4px;
+	}
+	.main-filters ul {
+		margin: 10px auto 0;
+	}
+	.side-providers {
+		position: relative;
+		display: block;
+		width: 30%;
+		background: linear-gradient(120deg, #05489D 0%, #152059 100%);
+		margin-top: 10px;
+		float: left;
+		-webkit-transform: none;
+		transform: none;
+		-webkit-transition: none;
+		transition: none;
+		z-index: 99;
+		border-radius: 5px;
+	}
+	.menu-mobile--itself {
+		position: relative;
+		display: block;
+		width: 30%;
+		margin-top: 60px;
+		float: left;
+		-webkit-transform: none;
+		transform: none;
+		-webkit-transition: none;
+		transition: none;
+		z-index: 99;
+		border-radius: 5px;
+	}
+	.menu-mobile--itself .close {
+		display: none;
+	}	
+	#content {
+		position: relative;
+		display: block;
+		width: 70%;
+		float: right;
+	}
+	#pagewrap {
+		padding-left: 10px;
+	}
+	ul.list li.item {
+		display: inline-block;
+		max-width: 435px;
+		width: 49%;
+		margin: 10px 4px;
+	}
+	.ad-menu ul {
+		width: 30%;
+		top: 51px;
+		right: 0;
+		left: auto;
+		border-radius: 0 0 5px 5px;
+	}
+	.site-title-wrap {
+		text-align: left;
+		margin: 0 0 0 15px;
+	}
+	.review_logo_wrap {
+		width: 40%;
+		float: left;
+	}
+}

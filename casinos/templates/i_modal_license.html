@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load cut_url %}
+<div>
+	<a href="#close-modal-license" title="Close-modal" class="close-modal">✕</a>
+	<h3 class="title-modal"><span>{{ obj.name }} {% trans 'Casino' %}</span><br/>{% trans 'License' %}</h3>
+	<p class="modal">
+		{% trans 'To view the current license, go to the casino website, go down to the footer and click on one of these icons that you will see' %}
+	</p>
+	<p class="modal">
+		<img src="/media/img/icons/license.png" alt="License Icon" title="Curacao" />
+		<img src="/media/img/icons/license2.png" alt="License Icon" title="Curacao" />
+		<img src="/media/img/icons/license3.png" alt="License Icon" title="Malta" />
+	</p>
+	<a class="modal-button" href="{{ obj.id | aff:usr_id }}">{% trans 'Go to Website' %}</a>
+</div>

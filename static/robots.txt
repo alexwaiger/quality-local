@@ -1,0 +1,12 @@
+User-Agent: *
+
+Allow: /
+
+Disallow: /search/
+Disallow: /send/
+Disallow: /admin/
+Disallow: /cdn-cgi/
+
+Clean-param: anid
+
+Sitemap: https://qualitycasinos.info/sitemap.xml

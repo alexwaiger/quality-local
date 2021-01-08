@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans 'About Us' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'Page about GQC Company, its creators, owners and developers. Learn more about our team and subscribe to our social media profiles so you don&#8217;t miss out on important news' %}.">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% trans 'About Us' %} — QualityCasinos.info" />
+			<meta name="twitter:description" content="{% trans 'Page about GQC Company, its creators, owners and developers. Learn more about our team and subscribe to our social media profiles so you don&#8217;t miss out on important news' %}." />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% trans 'About Us' %} — QualityCasinos.info">
+			<meta property="og:description" content="{% trans 'Page about GQC Company, its creators, owners and developers. Learn more about our team and subscribe to our social media profiles so you don&#8217;t miss out on important news' %}.">
+			<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/about/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans 'About Us' %}</h1>
+				<blockquote>
+				  <p>&laquo;{% trans 'To test something for quality, there must be someone who will try it first' %}.&raquo;</p>
+				  <cite><a href="https://twitter.com/AlexWeidger" rel="nofollow" target="_blank">Alexander Weidger</a></cite><span> {% trans 'Founder GQC' %}</span>
+
+				  <span class="img anim-norotate">
+					<img src="/media/img/sign.png" alt="{% trans 'Signature by Alex Weidger' %}" title="{% trans 'Signature by Alex Weidger' %}" />
+				  </span>
+				</blockquote>
+		{% endblock %}
+		
+		{% block main %}
+			{% blocktrans %}
+			<p>We are gamblers just like you.</p>
+			{% endblocktrans %}
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

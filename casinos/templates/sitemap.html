@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load sitemap_urls %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans 'SiteMap' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'HTML version sitemap for QualityCasinos.info. For find the information on our website, start surfing from this page. All sections of the site are presented in several languages' %}.">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% trans 'SiteMap' %} — QualityCasinos.info" />
+			<meta name="twitter:description" content="{% trans 'HTML version sitemap for QualityCasinos.info. For find the information on our website, start surfing from this page. All sections of the site are presented in several languages' %}." />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% trans 'SiteMap' %} — QualityCasinos.info">
+			<meta property="og:description" content="{% trans 'HTML version sitemap for QualityCasinos.info. For find the information on our website, start surfing from this page. All sections of the site are presented in several languages' %}.">
+			<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/sitemap/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="640">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans 'Sitemap' %}</h1>
+		{% endblock %}
+		
+		{% block main %}
+			<div class="sitemap">
+			<ul>
+				<li><a class="home" href="/">{% trans 'Quality Casinos'%}</a>
+				<ul class="lang">
+					{% for lang in LANGUAGES %}
+						{% if lang.0 != 'en' %}
+							<li><a href="/{{ lang.0 }}/">{{ lang.1 }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+					<ul>
+						<li><a href="/{{ LANGUAGE_CODE }}/best-bonuses/">{% trans 'Best Casino Bonuses'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/best-bonuses/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/best-payouts/">{% trans 'Best Casino Payouts'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/best-payouts/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/best-games/">{% trans 'Best Casino Games'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/best-games/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+					<ul>
+					{% for object in countries %}
+						<li><a href="/{{ LANGUAGE_CODE }}/{{ object.slug }}/">{% trans 'Best Online Casinos in' %} {{ object.name }}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/{{ object.slug }}/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+							<ul>
+								<li><a href="/{{ LANGUAGE_CODE }}/{{ object.slug }}/best-bonuses/">{% trans 'Best Casino Bonuses in'%} {{ object.name }}</a>
+									<ul class="lang">
+										{% for lang in LANGUAGES %}
+											{% if lang.0 != LANGUAGE_CODE %}
+												<li><a href="/{{ lang.0 }}/{{ object.slug }}/best-bonuses/">{{ lang.1 }}</a></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</li>
+								<li><a href="/{{ LANGUAGE_CODE }}/{{ object.slug }}/best-payouts/">{% trans 'Best Casino Payouts in'%} {{ object.name }}</a>
+									<ul class="lang">
+										{% for lang in LANGUAGES %}
+											{% if lang.0 != LANGUAGE_CODE %}
+												<li><a href="/{{ lang.0 }}/{{ object.slug }}/best-payouts/">{{ lang.1 }}</a></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</li>
+								<li><a href="/{{ LANGUAGE_CODE }}/{{ object.slug }}/best-games/">{% trans 'Best Casino Games in'%} {{ object.name }}</a>
+									<ul class="lang">
+										{% for lang in LANGUAGES %}
+											{% if lang.0 != LANGUAGE_CODE %}
+												<li><a href="/{{ lang.0 }}/{{ object.slug }}/best-games/">{{ lang.1 }}</a></li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+								</li>
+							</ul>							
+						</li>
+					{% endfor %}
+	
+						<li><a href="/{{ LANGUAGE_CODE }}/reviews/">{% trans 'Quality Online Casino Reviews'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/sitemap/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+							<ul>
+								{% for object in casinos %}
+									<li><a href="/{{ LANGUAGE_CODE }}/reviews/{{ object.name | lower }}/">{{ object.name }} {% trans 'Casino Review'%}</a>
+										<ul class="lang">
+											{% for lang in LANGUAGES %}
+												{% if lang.0 != LANGUAGE_CODE %}
+													<li><a href="/{{ lang.0 }}/reviews/{{ object.name | lower }}/">{{ lang.1 }}</a></li>
+												{% endif %}
+											{% endfor %}
+										</ul>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/black-list/">{% trans 'Casino Black List'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/sitemap/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/about/">{% trans 'About Us'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/about/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/contacts/">{% trans 'Contacts'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/contacts/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/privacy/">{% trans 'Privacy Policy'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/privacy/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/{{ LANGUAGE_CODE }}/sitemap/">{% trans 'Sitemap (This Page)'%}</a>
+							<ul class="lang">
+								{% for lang in LANGUAGES %}
+									{% if lang.0 != LANGUAGE_CODE %}
+										<li><a href="/{{ lang.0 }}/sitemap/">{{ lang.1 }}</a></li>
+									{% endif %}
+								{% endfor %}
+							</ul>
+						</li>						
+					</ul>
+				</li>	
+			</ul>
+			</div>
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load cut_url %}
+<div>
+	<a href="#close-modal" title="Close-modal" class="close-modal">✕</a>
+	<h3 class="title-modal"><span>{{ obj.name }}</span><br/>{% trans 'Online Casino' %}</h3>
+	<ul class="modal">
+		<li><a href="#">{% trans 'Share...' %}</a></li>
+		<li><a href="#">{% trans 'Copy link' %}</a></li>
+		<li><a href="#">{% trans 'Complain' %}</a></li>
+		<li><a href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">{% trans 'Review' %}</a></li>
+		<li><a href="#">{% trans 'Add to bookmarks' %}</a></li>
+		<li><a href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">{% trans 'Go to website' %}</a></li>
+	</ul>
+</div>

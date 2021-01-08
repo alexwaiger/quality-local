@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load cut_url %}
+<!-- HEAD -->
+{% block head %}
+	{% if country %}
+		{% if country.seo_title %}
+			<title>{{ country.seo_title }}</title>
+		{% else %}
+			<title>{% trans 'The Best 🏆 Quality Casinos in' %} {{ country.name }} — QualityCasinos.info</title>
+		{% endif %}
+		
+		{% if country.seo_description %}
+			<meta name="description" content="{{ country.seo_description }}">
+		{% else %}
+			<meta name="description" content="{% trans 'Only 👑 Quality Online Casinos in' %} {{ country.name }} {% trans 'for 💰 Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in' %} {{ country.name }}.">
+		{% endif %}
+	{% else %}
+		<title>{% trans 'The Best 🏆 Quality Casinos in' %} {% now "Y" %} — QualityCasinos.info</title>
+		<meta name="description" content="{% trans 'Only 👑 High-Quality Online Casinos for 💰 Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in all around the World.' %}">
+	{% endif %}
+	
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			{% if country %}
+				{% if country.seo_title %}
+					<meta name="twitter:title" content="{{ country.seo_title }}" /> 
+				{% else %}
+					<meta name="twitter:title" content="{% trans 'The Best Quality Casinos in' %} {{ country.name }} — QualityCasinos.info" />
+				{% endif %}
+				{% if country.seo_description %}
+					<meta name="twitter:description" content="{{ country.seo_description }}" />
+				{% else %}
+					<meta name="twitter:description" content="{% trans 'Only Quality Online Casinos in' %} {{ country.name }} {% trans 'for Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in' %} {{ country.name }}" />
+				{% endif %}				
+			{% else %}
+				<meta name="twitter:title" content="{% trans 'The Best Quality Casinos' %} {% now 'Y' %} — QualityCasinos.info" />
+				<meta name="twitter:description" content="{% trans 'Only High-Quality Online Casinos for Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in all around the World.' %}" />
+			{% endif %}
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="{% trans '100% Quality' %}" />
+	
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			{% if country %}
+				{% if country.seo_title %}
+					<meta property="og:title" content="{{ country.seo_title }}" >
+				{% else %}
+					<meta property="og:title" content="{% trans 'The Best Quality Casinos in' %} {{ country.name }} — QualityCasinos.info" >
+				{% endif %}
+				{% if country.seo_description %}
+					<meta property="og:description" content="{{ country.seo_description }}" >
+				{% else %}
+					<meta property="og:description" content="{% trans 'Only Quality Online Casinos in' %} {{ country.name }} {% trans 'for Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in' %} {{ country.name }}" >
+				{% endif %}				
+			{% else %}
+				<meta property="og:title" content="{% trans 'The Best Quality Casinos' %} {% now 'Y' %} — QualityCasinos.info" >
+				<meta property="og:description" content="{% trans 'Only High-Quality Online Casinos for Real Money. 100% Guarantee of Reliability and Honesty. Play and Win Cash on the Best Online Gambling Platforms in all around the World.' %}">
+			{% endif %}
+			{% if country %}
+				<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/{{ country.slug }}/">
+			{% else %}
+				<meta property="og:url" content="https://qualitycasinos.info/{% if LANGUAGE_CODE != 'en' %}{{ LANGUAGE_CODE }}/{% endif %}">
+			{% endif %}
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			{% if country %}
+				<h1>{% trans 'Best Online Casinos in' %} {{ country.name }}</h1>
+				<div class="blockquote">
+					<p>{% trans 'Independent reviews of the best casinos in' %} {{ country.name }}. {% trans 'Only honest and reliable online establishments for' %} {{ country.adj_name }} {% trans 'players' %}</p>
+					<span class="cite">{% trans 'Top' %} {{ objects.count }} {% trans 'High-Quality' %} {{ country.adj_name }} {% trans 'Online Casinos' %}</span>
+					{% if country.logo %}
+						<!--<span class="img anim-rotate">
+							<img src="/media/img/country-bg.png" alt="Quality Guarantee" title="Quality Guarantee" />
+						</span>-->
+						<span class="img anim-norotate">
+							<img src="{{ country.logo.url }}" alt="{{ country.name }}" title="{{ country.name }}" />
+						</span>
+					{% endif %}
+				</div>
+				<div  class="main-description">
+					<p>
+						{% if country.safetoptext %}
+							{{ country.safetoptext | safe }}
+						{% else %}
+							{% trans 'Here you will find only High-Quality online casinos for real money in' %} {{ country.name }}. {% trans 'All presented' %} {{ country.adj_name }} {% trans 'casino sites are checked and determined to be completely reliable for serious gaming. Choose the Best and Play Now' %}.
+						{% endif %}
+					</p>
+				</div>
+				<div class="main-filters">
+					<ul><!--
+						--><li><a class="active" href="/{{ LANGUAGE_CODE }}/{% if country.slug %}{{ country.slug }}/{% endif %}">{% trans 'Quality' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-bonuses/">{% trans 'Bonuses' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-payouts/">{% trans 'Payouts' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/{% if country %}{{ country.slug }}/{% endif %}best-games/">{% trans 'Games' %}</a></li><!--
+					--></ul>
+				</div>
+			{% else %}
+				<h1>{% trans 'Best Online Casinos' %}</h1>
+				<blockquote>
+				  <p>&laquo;{% trans 'Man is a gaming animal. He must always be trying to get the better in something or other.' %}&raquo;</p>
+				  <cite><a href="https://en.wikipedia.org/wiki/Charles_Lamb" rel="nofollow" target="_blank">Charles Lamb</a></cite><span> Writer</span>
+				  <div class="anim_wrapper">
+					  <span class="img anim-rotate">
+						<img src="/media/img/quality-bg.png" alt="Quality Guarantee" title="Quality Guarantee" />
+					  </span>
+				  </div>
+				  <span class="img anim-norotate">
+					<img src="/media/img/quality.png" alt="Quality Guarantee" title="Quality Guarantee" />
+				  </span>
+				</blockquote>
+				<div  class="main-description">
+					<p>{% trans 'Here you will find only the' %} <span>{% trans 'High-Quality' %}</span> {% trans 'online casinos for' %} <span>{% trans 'real money' %}</span>. {% trans 'All presented casino sites are' %} <span>{% trans 'checked and determined' %}</span> {% trans 'to be completely reliable for' %} <span>{% trans 'serious gaming' %}</span>. {% trans 'Choose the Best and Play Now' %}.</p>
+				</div>
+				<div class="main-filters">
+					<ul><!--
+						--><li><a class="active" href="{% if LANGUAGE_CODE == 'en' %}/{% else %}/{{ LANGUAGE_CODE }}/{% endif %}">{% trans 'Quality' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/best-bonuses/">{% trans 'Bonuses' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/best-payouts/">{% trans 'Payouts' %}</a></li><!--
+						--><li><a href="/{{ LANGUAGE_CODE }}/best-games/">{% trans 'Games' %}</a></li><!--
+					--></ul>
+				</div>
+			{% endif %}
+		{% endblock %}
+		
+		{% block main %}
+			<ul class="list">
+				{% for obj in objects %}<!-- Online Casino List Item
+					--><li class="item">
+						<div class="title">
+							<span class="position">{{ forloop.counter }}</span>
+							<span><h2>{{ obj.name }}</h2></span>
+							<span class="quality"><span class="text">{% trans 'Casino Quality' %}</span><span class="score">{{ obj.trust_score.0 }}.{{ obj.trust_score.1 }}</span></span>
+							<a href="#openModal{{ obj.id }}"><img class="dotes" src="/media/img/icons/dotes.png" alt="{{ obj.name }} casino menu"/></a>
+						</div>
+						<div class="image">
+							<a class="logo-link" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">
+							<img class="logo"
+							{% if obj.logo_color %}
+								style="background:#{{ obj.logo_color }};"
+							{% else %}
+								style="background:#000000;"
+							{% endif %}
+							src="{{ obj.logo.url }}" alt="{{ obj.name }} logo"/>
+							</a>
+							{% if obj.badge and obj.badge != '0' %}
+							<div class="badge">
+								{% if obj.badge == 'win' and obj.winner %}
+									<a href="{{ obj.winner }}" rel="nofollow" target="_blank">
+								{% endif %}
+									<img src="/media/img/icons/badges/{{ obj.badge }}.png" alt="{{ obj.badge }}"/>
+								{% if obj.badge == 'win' and obj.winner %}
+									</a>
+								{% endif %}
+							</div>
+							{% endif %}
+							<div class="rating-stars">
+								<img class="stars" src="/media/img/icons/stars/star-{{ obj.trust_score }}.png" alt="Rating" />
+							</div>							
+							<div class="ankor">
+								<a href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">{% trans 'Go to Website' %}</a>
+							</div>
+						</div>
+						<div class="item-wrapper">
+							<div class="item-info">
+								<div class="item-left">
+									<ul>
+										{% if obj.fb or obj.twitter or obj.instagram %}
+										<li>Social<br/>Media</li>
+										{% endif %}
+										{% if obj.fb %}
+											<li>
+												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
+											</li>
+										{% endif %}									
+										{% if obj.twitter %}
+											<li>
+												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
+											</li>
+										{% endif %}
+										{% if obj.instagram %}
+											<li>
+												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
+											</li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="item-right">
+									<ul>
+										<li>Valid<br/>License</li>
+										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
+										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="item-info">
+								<div class="item-left">
+									<ul>
+										<li>Available<br/>Countries</li>
+									</ul>
+								</div>
+								<div class="item-right">
+									<ul>
+										{% for c in obj.country.all %}
+										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="item-info"> 
+								<div class="item-left games">
+									{% if obj.games %}
+									<ul>
+										<li>Games<br/>Count</li>
+										<li class="item-games">{{ obj.games }}+</li>
+									</ul>
+									{% endif %}
+								</div>
+								<div class="item-right">
+									{% if obj.bonus and obj.limit %}
+									<ul>
+										<li>Welcome<br/>Bonus</li>
+										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
+										<li class="item-bonus">{{ obj.limit }}€</li>
+									</ul>
+									{% endif %}
+								</div>								
+							</div>							
+						</div>
+						
+						<div class="buttons">
+							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">Review</a>
+							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Play Now</a>
+						</div>
+						
+						<!--<div><p>{{ obj.description }}</p></div>-->
+						<!-- MODAL -->
+						<div id="openModal{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_main.html' %}
+						</div>
+						<!-- MODAL LICENSE -->
+						<div id="openModalLicense{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_license.html' %}
+						</div>
+						<!-- MODAL 18+ -->
+						<div id="openModalAlert{{ obj.id }}" class="modalDialog">
+							{% include 'i_modal_18.html' %}
+						</div>					
+						<!-- END MODAL -->
+					</li><!--Online Casino List Item end
+				-->{% endfor %}
+			</ul>
+		{% endblock %}
+		
+			{% block main_content %}
+				<div class="text-content">
+				{% if country %}
+					{% if country.text %}
+						{{ country.safetext|safe }}
+					{% else %}
+						<h2>{% trans 'Top' %} {{ country.adj_name }} {% trans 'online casinos' %}</h2>
+						<p>
+						{% trans 'All presented casino is the best quality for' %} {{ country.adj_name }} {% trans 'players' %}. {% trans 'Only High-Quality online casinos for real money in' %} {{ country.name }}. {% trans 'Most of them provide round-the-clock technical support in' %} {{ country.adj_name }} {% trans 'and accept local currency' %}.
+						</p>
+					{% endif %}
+				{% else %}
+						<h2>{% trans 'How is the quality of an online casino evaluated?' %}</h2>
+						<p>
+						{% blocktrans %}
+						In our rating, there are only online casinos with a valid license, but it does not always guarantee the reliability of the gambling establishment and can be canceled at any time. Experienced gamblers making ratings take into account much more indicators:
+						{% endblocktrans %}
+						</p>
+						<ul>
+							<li><span>{% trans 'How long does it take to withdraw funds from the account' %}.</span>
+							{% blocktrans %}
+							First, the complexity of the output is checked. Second, the timing of transfers is assessed. If a period of 5 working days for Visa, Maestro and MasterCard bank cards is considered normal, then transfers to Skrill, Neteller and others wallets should not take more than 2 days.
+							{% endblocktrans %}
+							</li>
+							<li><span>{% trans 'Do bonus options offer real benefits' %}.</span>
+							{% blocktrans %}
+							A good example is the welcome bonus, which is given to beginners for their first deposit. The user can get free spins and multiply the deposited money. However, if the casino offers to clear this bonus within the next 24 hours, then the chances of winning are close to zero.
+							{% endblocktrans %}
+							</li>
+							<li><span>{% trans 'How is organized the support service' %}.</span>
+							{% blocktrans %}
+							Only a casino that has a real team of employees can get a license. This is mainly about feedback. In high-quality casinos, when contacting the chat, a gambler receives a response from a real person, and not from an automatic program.
+							{% endblocktrans %}
+							</li>
+							<li><span>{% trans 'Is the software original' %}.</span>
+							{% blocktrans %}
+							To figure that out, we compare games from the developer's official website with those presented in online casinos. If there are even the slightest differences in graphics, special effects and design, then the institution is sent for a detailed check.
+							{% endblocktrans %}
+							</li>
+						</ul>
+						<p class="important">
+						{% blocktrans %}
+						All the presented casinos have passed a full quality check with special software and manual checks by our specialists, which guarantees 100% reliability of these establishments.
+						{% endblocktrans %}
+						</p>
+						<p>
+						{% blocktrans %}
+						Nevertheless, if for some reason you are not satisfied with a gambling establishment from our rating, then you can send a complaint and we will conduct an additional check. Online casinos that have not passed quality control are blacklisted.
+						{% endblocktrans %}
+						</p>
+				{% endif %}
+				</div>
+			{% endblock %}		
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

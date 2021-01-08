@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans 'BlackList of Online Casinos' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'Here you can check any online casino for its presence in our blacklist. This list includes those establishments that do not meet the GQC quality standards' %}.">
+			
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@AlexWeidger" />
+			<meta name="twitter:title" content="{% trans 'BlackList of Online Casinos' %} — QualityCasinos.info" />
+			<meta name="twitter:description" content="{% trans 'Here you can check any online casino for its presence in our blacklist. This list includes those establishments that do not meet the GQC quality standards' %}." />
+			<meta name="twitter:image" content="https://qualitycasinos.info/media/img/ogq.png" />
+			<meta name="twitter:image:alt" content="100% Quality" />
+			
+			<meta property="og:type" content="website">
+			<meta property="og:site_name" content="Quality Casinos">
+			<meta property="og:title" content="{% trans 'BlackList of Online Casinos' %} — QualityCasinos.info">
+			<meta property="og:description" content="{% trans 'Here you can check any online casino for its presence in our blacklist. This list includes those establishments that do not meet the GQC quality standards' %}.">
+			<meta property="og:url" content="https://qualitycasinos.info/{{ LANGUAGE_CODE }}/black-list/">
+			<meta property="og:locale" content="{{ LANGUAGE_CODE }}">
+			<meta property="og:image" content="https://qualitycasinos.info/media/img/ogq.png">
+			<meta property="og:image:width" content="480">
+			<meta property="og:image:height" content="480">
+{% endblock %}
+<!-- END HEAD -->
+	
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans 'Casino Black List' %}</h1>
+		{% endblock %}
+		
+		{% block main %}
+		<div class="blacklist">
+			<p>{% trans 'Check any online casino for compliance with GQC quality standards.' %}</p>
+				<form name="contacts" action="/search/" method="post">
+				{% csrf_token %}
+					<p>
+						<label for="search">{% trans 'Search' %}</label>
+						<input class="input" name="search" ENGINE="text"  />
+					</p>
+					<p>
+						<input id="submit" value="{% trans 'Search' %}" type="submit" />
+					</p>
+				</form>
+			<p>{% trans 'If your proposed casino is not in the black list or in the' %} <a href="/{% if LANGUAGE_CODE != 'en' %}{{ LANGUAGE_CODE }}/{% endif %}">{% trans 'rating of quality online casinos' %}</a>, {% trans 'then in the near future we will conduct a comprehensive review and place the casino on our website in accordance with its quality indicators.' %}</p>
+		</div>
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->

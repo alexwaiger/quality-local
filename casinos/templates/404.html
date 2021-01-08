@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!-- HEAD -->
+{% block head %}
+	<title>{% trans '404 Page not found' %} — QualityCasinos.info</title>
+	<meta name="description" content="{% trans 'Error 404 Page not found' %}.">
+{% endblock %}
+<!-- END HEAD -->
+
+	<!-- CONTENT -->
+		{% block main_head %}
+			<h1>{% trans '404' %}</h1>
+		{% endblock %}
+
+		{% block main %}
+			<p>{% trans 'Page not found' %}</p>
+		{% endblock %}
+	<!-- END CONTENT -->
+	<!-- SCRIPTS -->
+	{% block script %}
+	{% endblock %}
+	<!-- END SCRIPTS -->
