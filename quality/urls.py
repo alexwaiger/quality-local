@@ -11,13 +11,17 @@ from django.conf import settings
 
 from casinos.models import Casino
 from django.contrib.sitemaps.views import sitemap
-from casinos.sitemap import StaticHomeSitemap, StaticViewSitemap, CasinoSitemap, CountrySitemap
+from casinos.sitemap import StaticHomeSitemap, StaticViewSitemap, CasinoSitemap, CountrySitemap, FiltersSitemap, CountryBonusSitemap, CountryPayoutSitemap, CountryGamesSitemap
 
 sitemaps = {
     'home': StaticHomeSitemap,
+    'filters': FiltersSitemap,
     'static': StaticViewSitemap,
     'casino': CasinoSitemap,
     'countries': CountrySitemap,
+    'country_bonuses': CountryBonusSitemap,
+    'country_payouts': CountryPayoutSitemap,
+    'country_games': CountryGamesSitemap,
 }
 
 urlpatterns = [
@@ -55,7 +59,7 @@ urlpatterns += i18n_patterns(
     path(r'reviews/', views.reviews, name='reviews'),
     path(r'reviews/<slug:slug>/', views.review, name='review'),
     path(r'<slug:slug>/', views.countries, name='countries'),
-    path(r'<slug:slug>/best-bonuses/', views.bonuses, name='bonuses'),
-    path(r'<slug:slug>/best-payouts/', views.payouts, name='payouts'),
-    path(r'<slug:slug>/best-games/', views.games, name='games'),
+    path(r'<slug:slug>/best-bonuses/', views.bonuses, name='country_bonuses'),
+    path(r'<slug:slug>/best-payouts/', views.payouts, name='country_payouts'),
+    path(r'<slug:slug>/best-games/', views.games, name='country_games'),
 )

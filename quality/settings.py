@@ -15,7 +15,7 @@ SECRET_KEY = 't+^i#awlcxkwr)uoy$p9!+rva&ygfmkn#57z-9pdri4!v^^hp9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['qualitycasinos.info', '*']
 
 SITE_ID = 1
 
@@ -108,7 +108,6 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
 	('en', 'English(GB)'),
     ('au', 'English(AU)'),
-    ('ru', 'Russian'),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'

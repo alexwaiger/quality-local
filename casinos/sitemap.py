@@ -3,6 +3,8 @@ from django.contrib.sitemaps import Sitemap
 from .models import Casino, Country
 from django.urls import reverse
 
+from django.conf import settings
+
 class StaticHomeSitemap(Sitemap):
     priority = 1
     changefreq = 'daily'
@@ -50,3 +52,51 @@ class CountrySitemap(Sitemap):
 
     def location(self, obj):
         return reverse('countries', args=[obj.slug])
+
+class CountryBonusSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.7
+    protocol = "https"
+    i18n = True
+
+    def items(self):
+        return Country.objects.all()
+
+    def location(self, obj):
+        return reverse('country_bonuses', args=[obj.slug])
+
+class CountryPayoutSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.7
+    protocol = "https"
+    i18n = True
+
+    def items(self):
+        return Country.objects.all()
+
+    def location(self, obj):
+        return reverse('country_payouts', args=[obj.slug])
+
+class CountryGamesSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.7
+    protocol = "https"
+    i18n = True
+
+    def items(self):
+        return Country.objects.all()
+
+    def location(self, obj):
+        return reverse('country_games', args=[obj.slug])
+
+class FiltersSitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.7
+    protocol = "https"
+    i18n = True
+
+    def items(self):
+        return ['bonuses', 'payouts', 'games']
+
+    def location(self, item):
+        return reverse(item)
