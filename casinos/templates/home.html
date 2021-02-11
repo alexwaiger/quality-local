@@ -171,73 +171,91 @@
 						<div class="item-wrapper">
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Player Relations</h4>
 									<ul>
-										{% if obj.fb or obj.twitter or obj.instagram %}
-										<li>Social<br/>Media</li>
-										{% endif %}
-										{% if obj.fb %}
-											<li>
-												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
-											</li>
-										{% endif %}									
 										{% if obj.twitter %}
 											<li>
-												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
+												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} {% trans 'Twitter Page' %}" /></a>
 											</li>
 										{% endif %}
 										{% if obj.instagram %}
 											<li>
-												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
+												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} {% trans 'Instagram Page' %}" /></a>
 											</li>
 										{% endif %}
+										{% if obj.fb %}
+											<li>
+												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} {% trans 'Facebook Page' %}" /></a>
+											</li>
+										{% endif %}
+                                        {% if obj.live %}
+											<li>
+												<a href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow"><img src="/media/img/icons/support.png" alt="{% trans 'Live Chat' %}" title="{{ obj.name }} {% trans 'Live Chat' %}" /></a>
+											</li>
+                                        {% endif %}
+                                        {% if not obj.twitter or not obj.instagram or not obj.fb %}
+                                            {% if obj.email %}
+											<li>
+												<a href="mailto:{{ obj.email }}" target="_blank" rel="nofollow"><img src="/media/img/icons/email.png" alt="{% trans 'Support E-mail' %}" title="{{ obj.name }} {% trans 'Support E-mail' %}" /></a>
+											</li>
+                                            {% endif %}
+                                        {% endif %}
 									</ul>
 								</div>
 								<div class="item-right">
+                                    <h4>Age Limit</h4>
 									<ul>
-										<li>Valid<br/>License</li>
-										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
 										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="item-info">
 								<div class="item-left">
-									<ul>
-										<li>Available<br/>Countries</li>
+                                    <h4>Available Countries</h4>
+                                    <ul>
+                                    {% if country %}
+                                        <li><a href="/{{ LANGUAGE_CODE }}/{{ country.slug }}/"><img src="{{ country.flag.url }}" alt="{{ country.name }}" title="{{ country.name }}" /></a></li>
+                                    {% endif %}
+
+                                        {% if obj.country.count <= 4 %}
+                                            {% for c in obj.country.all %}
+                                                {% if c != country %}
+                                                    <li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+
+                                            {% for c in obj.country.all %}
+                                                {% if forloop.counter < 4 and forloop.counter > count %}
+                                                    {% if c != country %}
+                                                        <li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
+                                                    {% else %}
+                                                        {% with last_country=obj.country.all|first %}
+                                                        <li><a href="/{{ LANGUAGE_CODE }}/{{ last_country.slug }}/"><img src="{{ last_country.flag.url }}" alt="{{ last_country.name }}" title="{{ last_country.name }}" /></a></li>
+                                                        {% endwith %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                                {% if obj.country.count > 4 %}
+                                                    <li><a class="count" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/#countries">+{{ obj.country.count|add:-3 }}</a></li>
+                                                {% endif %}
+
+                                        {% endif %}
 									</ul>
 								</div>
 								<div class="item-right">
+                                    <h4>License</h4>
 									<ul>
-										{% for c in obj.country.all %}
-										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
-										{% endfor %}
+										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} {% trans 'casino license' %}" title="{% trans 'License' %}"/></a></li>
 									</ul>
 								</div>
 							</div>
-							<div class="item-info"> 
-								<div class="item-left games">
-									{% if obj.games %}
-									<ul>
-										<li>Games<br/>Count</li>
-										<li class="item-games">{{ obj.games }}+</li>
-									</ul>
-									{% endif %}
-								</div>
-								<div class="item-right">
-									{% if obj.bonus and obj.limit %}
-									<ul>
-										<li>Welcome<br/>Bonus</li>
-										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
-										<li class="item-bonus">{{ obj.limit }}€</li>
-									</ul>
-									{% endif %}
-								</div>								
-							</div>							
 						</div>
 						
 						<div class="buttons">
-							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">Review</a>
-							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Play Now</a>
+							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">{% trans 'Review' %}</a>
+							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">{% trans 'Play Now' %}</a>
 						</div>
 						
 						<!--<div><p>{{ obj.description }}</p></div>-->

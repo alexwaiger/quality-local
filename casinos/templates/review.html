@@ -75,7 +75,7 @@
 		{% block main %}
 		<div class="review_wrap">
 
-			<div class="review_bonus">
+			<div id="bonuses" class="review_bonus">
 				<h2>{% trans 'Welcome Bonus' %}</h2>
 				<div class="bonus"><span>{{ object.bonus }}%</span> {% trans 'Up to' %} <span>{{ object.limit }}</span></div>
 				<div class="review_buttons">
@@ -85,7 +85,7 @@
 				<div style="clear: both; padding: 0;"></div>
 			</div>
 			
-			<div class="review_countries">
+			<div id="countries" class="review_countries">
 				<h2>{% trans 'Accepted Countries' %}</h2>
 				<p>{{ object.name }} {% trans 'online casino is accepted in more them' %} {{ object.country.count }} {% trans 'countries' %}. {% trans 'Click on the icons below to find out what place the' %} {{ object.name }} {% trans 'casino occupies in the ranking of these countries' %}.</p>
 					<ul>
@@ -95,17 +95,17 @@
 					</ul>
 			</div>
 			
-			<div class="review_currencies">
+			<div id="currencies" class="review_currencies">
 				<h2>{% trans 'Accepted Currencies' %}</h2>
 				<p></p>
 					<ul>
 					{% for obj in object.currency.all %}
-						<li>{% if obj.logo %}<img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{% else %}{{ obj.name }}{% endif %}</li>
+						<li>{% if obj.logo %}<img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{{ obj.name }}{% else %}{{ obj.name }}{% endif %}</li>
 					{% endfor %}
 					</ul>
 			</div>
 			
-			<div class="review_software">
+			<div id="providers" class="review_software">
 				<h2>{% trans 'Software Providers' %}</h2>
 				<p></p>
 					<ul>
@@ -114,8 +114,18 @@
 					{% endfor %}
 					</ul>
 			</div>
+
+			<div id="games" class="review_game_types">
+				<h2>{% trans 'Casino Game Types' %}</h2>
+				<p>{{ object.name }} {% trans 'casino has more than' %} {{ object.games }} {% trans 'high-quality licensed games. You can see the list of' %} {{ object.name }} {% trans 'casino games category below' %}.</p>
+					<ul>
+					{% for obj in object.game_types.all %}
+						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{{ obj.name }}</li>
+					{% endfor %}
+					</ul>
+			</div>
 			
-			<div class="review_payments">
+			<div id="payments" class="review_payments">
 				<h2>{% trans 'Payment Methods' %}</h2>
 				<p></p>
 					<ul>
@@ -125,7 +135,7 @@
 					</ul>
 			</div>
 
-			<div class="review_withdraw">
+			<div id="payouts" class="review_withdraw">
 				<h2>{% trans 'Withdraw Methods' %}</h2>
 				<p></p>
 					<ul>
@@ -135,17 +145,7 @@
 					</ul>
 			</div>
 			
-			<div class="review_game_types">
-				<h2>{% trans 'Casino Games' %}</h2>
-				<p>{{ object.name }} {% trans 'casino has more than' %} {{ object.games }} {% trans 'high-quality licensed games. You can see the list of' %} {{ object.name }} {% trans 'casino games category below' %}.</p>
-					<ul>
-					{% for obj in object.game_types.all %}
-						<li><img src="{{ obj.logo.url }}" alt="{{ obj.name }}" title="{{ obj.name }}" />{{ obj.name }}</li>
-					{% endfor %}
-					</ul>
-			</div>
-			
-			<div class="review_info">			
+			<div id="info" class="review_info">
 				<h2>{% trans 'Other Information' %}</h2>
 				{% if object.text %}
 				<p>{{ object.text }}</p>

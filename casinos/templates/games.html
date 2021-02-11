@@ -142,68 +142,43 @@
 						<div class="item-wrapper">
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Software Providers</h4>
 									<ul>
-										{% if obj.fb or obj.twitter or obj.instagram %}
-										<li>Social<br/>Media</li>
-										{% endif %}
-										{% if obj.fb %}
-											<li>
-												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
-											</li>
-										{% endif %}									
-										{% if obj.twitter %}
-											<li>
-												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
-											</li>
-										{% endif %}
-										{% if obj.instagram %}
-											<li>
-												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
-											</li>
-										{% endif %}
+                                            {% for p in obj.soft.all %}
+                                                {% if forloop.counter <= 3 %}
+                                                    <li class="providers"><img src="{% if p.logo_inverted %}{{ p.logo_inverted.url }}{% else %}{{ p.logo.url }}{% endif %}" alt="{{ p.name }}" title="{{ p.name }}" /></li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                                {% if obj.soft.count > 3 %}
+                                                    <li><a class="count" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/#providers">+{{ obj.soft.count|add:-3 }}</a></li>
+                                                {% endif %}
 									</ul>
 								</div>
 								<div class="item-right">
+                                    <h4>Games Count</h4>
 									<ul>
-										<li>Valid<br/>License</li>
-										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
-										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
+                                        <li class="deposit">{% if obj.games %}{{ obj.games }}+{% else %}{%  trans '100+' %}{% endif %}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Game Types</h4>
 									<ul>
-										<li>Available<br/>Countries</li>
-									</ul>
-								</div>
-								<div class="item-right">
-									<ul>
-										{% for c in obj.country.all %}
-										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
-										{% endfor %}
+
+                                            {% for p in obj.game_types.all %}
+                                                {% if forloop.counter <= 4 %}
+                                                    <li><img src="{% if p.logo_inverted %}{{ p.logo_inverted.url }}{% else %}{{ p.logo.url }}{% endif %}" alt="{{ p.name }}" title="{{ p.name }}" /></li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                                {% if obj.game_types.count > 4 %}
+                                                    <li><a class="count" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/#games">+{{ obj.game_types.count|add:-4 }}</a></li>
+                                                {% endif %}
 									</ul>
 								</div>
 							</div>
-							<div class="item-info"> 
-								<div class="item-left games">
-									{% if obj.games %}
-									<ul>
-										<li>Games<br/>Count</li>
-										<li class="item-games">{{ obj.games }}+</li>
-									</ul>
-									{% endif %}
-								</div>
-								<div class="item-right">
-									{% if obj.bonus and obj.limit %}
-									<ul>
-										<li>Welcome<br/>Bonus</li>
-										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
-										<li class="item-bonus">{{ obj.limit }}€</li>
-									</ul>
-									{% endif %}
-								</div>								
-							</div>							
 						</div>
 						
 						<div class="buttons">
@@ -216,14 +191,6 @@
 						<div id="openModal{{ obj.id }}" class="modalDialog">
 							{% include 'i_modal_main.html' %}
 						</div>
-						<!-- MODAL LICENSE -->
-						<div id="openModalLicense{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_license.html' %}
-						</div>
-						<!-- MODAL 18+ -->
-						<div id="openModalAlert{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_18.html' %}
-						</div>					
 						<!-- END MODAL -->
 					</li><!--Online Casino List Item end
 				-->{% endfor %}
@@ -233,10 +200,14 @@
 			{% block main_content %}
 				<div class="text-content">
 				{% if country %}
+                    {% if country.games_text %}
+						{{ country.games_text|safe }}
+					{% else %}
 						<h2>{% trans 'Top' %} {{ country.adj_name }} {% trans 'online casino games' %}</h2>
 						<p>
 						{% trans 'All games in all offered online casinos in' %} {{ country.name }} {% trans 'are original licensed versions. The highest position in the ranking is occupied by' %} {{ country.adj_name }} {% trans 'online casinos with the largest variety of games and software providers' %}.
 						</p>
+					{% endif %}
 				{% else %}
 						<h2>{% trans 'Top online casino games' %}</h2>
 						<p>

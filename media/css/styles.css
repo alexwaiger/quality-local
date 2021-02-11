@@ -78,6 +78,9 @@ blockquote span, .blockquote span {
 	font-weight: normal;
 	font-style: normal;
 }
+.bold {
+	font-weight: bold;
+}
 .anim_wrapper {
 	display: block;
 	width: 125px;
@@ -206,6 +209,8 @@ ul.list li.item {
 	box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
 	position: relative;
 	display: block;
+	max-width: 435px;
+	min-width: 368px;
 }
 .list li.item .image {
 	position: relative;
@@ -224,6 +229,7 @@ ul.list li.item {
 	border-radius: 50%;
 	padding: 5px;
 	box-shadow: 0px 0px 1px #05489d;
+	margin-bottom: 20px;
 }
 .list li.item .image img.logo:hover {
 	box-shadow: 0px 0px 1px #ffd72e;
@@ -310,7 +316,7 @@ ul.list li.item {
 	position: relative;
 	display: inline-block;
 	width: 65%;
-	margin-top: 5px;
+	margin-top: 0px;
 	vertical-align: top;
 	margin-bottom: 60px;
 	color: #000000;
@@ -328,8 +334,8 @@ ul.list li.item {
 }
 .list li.item .item-wrapper .item-info {
 	position: relative;
-	margin: 5px 0;
-	height: 30px;
+	margin: 0;
+	height: 72px;
 	border-bottom: 1px solid #cccccc;
 	width: 100%;
 }
@@ -338,33 +344,88 @@ ul.list li.item {
     top: 0;
     left: 0;
 }
+.list li.item .item-wrapper .item-info h4 {
+	font-weight: bold;
+	margin-top: 5px;
+	text-align: left;
+	color: #05489d;
+}
+.list li.item .item-wrapper .item-info .item-left h4 {
+	text-align: left;
+}
+.list li.item .item-wrapper .item-info .item-right h4 {
+	text-align: right;
 }
 .list li.item .item-wrapper .item-info .item-left ul {
 	display: block;
+	text-align: left;
 }
 .list li.item .item-wrapper .item-info .item-left ul li {
 	display: inline-block;
-	font-size: 8px;
 	text-align: left;
+	vertical-align: middle;
+	margin: 4px;
 }
 .list li.item .item-wrapper .item-info .item-left ul li img {
-	width: 24px;
-	margin-left: 5px;
+	width: 40px;
 }
 .list li.item .item-wrapper .item-info .item-right ul {
 	display: block;
+	text-align: right;
 }
 .list li.item .item-wrapper .item-info .item-right ul li {
 	display: inline-block;
-	font-size: 8px;
 	text-align: left;
+	vertical-align: middle;
 }
 .list li.item .item-wrapper .item-info .item-right ul li img {
-	width: 24px;
-	margin-left: 5px;
+	width: 40px;
+	margin: 4px 0 4px 8px;
+}
+.list li.item .item-wrapper .item-info .count {
+	display: block;
+	font-family: 'Roboto Slab', serif;
+	width: 39px;
+	height: 39px;
+	border-radius: 50%;
+	background: #c7dfff;
+	color: #05489d;
+	border: 1px solid #05489d;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 36px;
+}
+.list li.item .item-wrapper .item-info .providers {
+	width: 39px;
+	height: 39px;
+	border-radius: 50%;
+	border: 1px solid #7CA0C7;
+	padding: 9px 0;
+}
+.list li.item .item-wrapper .item-info .payments {
+	width: 39px;
+	height: 39px;
+	border-radius: 50%;
+	border: 1px solid #7CA0C7;
+	padding: 6px 0;
 }
 .list li.item .item-wrapper .item-info .games {
 	display: block;
+}
+.list li.item .item-wrapper .item-info .deposit {
+	font-family: 'Roboto Slab', serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;
+	margin: 4px;
+}
+.list li.item .item-wrapper .item-info .fs {
+	font-family: 'Roboto Slab', serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #000000;
+	margin: 6px 5px 4px 0;
 }
 .list li.item .item-wrapper .item-info .item-games {
 	font-family: 'Roboto Slab', serif;
@@ -579,10 +640,11 @@ ul.list li.item {
 }
 .review_wrap h2 {
 	text-align: left;
-	margin: 10px 0;
+	margin: 40px 0 10px;
 }
 .review_wrap ul {
 	display: block;
+	margin-bottom: 40px;
 }
 .review_wrap ul li {
 	display: inline-block;
@@ -709,10 +771,15 @@ ul.list li.item {
 	margin: 0;
 	text-align: center;
 	vertical-align: top;
+	background: #122664;
+}
+.review_wrap .review_payments h2 {
+	color: #ffffff;
 }
 .review_wrap .review_payments ul li {
 	display: inline-block;
 	margin: 0 auto;
+	width: 64px;
 }
 .review_wrap .review_withdraw {
 	display: inline-block;
@@ -720,10 +787,15 @@ ul.list li.item {
 	margin: 0;
 	text-align: center;
 	vertical-align: top;
+	background: #122664;
+}
+.review_wrap .review_withdraw h2 {
+	color: #ffffff;
 }
 .review_wrap .review_withdraw ul li {
 	display: inline-block;
 	margin: 0 auto;
+	width: 64px;
 }
 .review_wrap .review_game_types ul li {
 	width: 48px;
@@ -1084,12 +1156,17 @@ ul.list li.item {
 	}
 	.side-providers ul li {
 		display: inline-block;
+		font-size: 8px;
 	}
 	.side-providers ul li img {
 		display: block;
 		width: 60px;
 		padding: 0;
 		margin: 5px;
+	}
+	.side-providers ul li img.game-icon {
+		width: 48px;
+		margin: 12px 12px 5px;
 	}
 /* END SIDE MENU */
 
@@ -1410,7 +1487,7 @@ ul.list li.item {
 		display: inline-block;
 		max-width: 435px;
 		width: 49%;
-		margin: 0 3px;
+		margin: 8px 3px;
 	}
 	#footer {
 		margin: 0;

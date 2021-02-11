@@ -142,73 +142,37 @@
 						<div class="item-wrapper">
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Welcome Pack</h4>
 									<ul>
-										{% if obj.fb or obj.twitter or obj.instagram %}
-										<li>Social<br/>Media</li>
-										{% endif %}
-										{% if obj.fb %}
-											<li>
-												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
-											</li>
-										{% endif %}									
-										{% if obj.twitter %}
-											<li>
-												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
-											</li>
-										{% endif %}
-										{% if obj.instagram %}
-											<li>
-												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
-											</li>
-										{% endif %}
+										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
+										<li class="item-bonus">{{ obj.limit }}€</li>
 									</ul>
 								</div>
 								<div class="item-right">
+                                    <h4>Free Spins</h4>
 									<ul>
-										<li>Valid<br/>License</li>
-										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
-										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
+                                        <li class="fs">{% if obj.fs %}+{{ obj.fs }} FS{% else %}{%  trans 'No FS' %}{% endif %}</li>
 									</ul>
 								</div>
 							</div>
 							<div class="item-info">
 								<div class="item-left">
 									<ul>
-										<li>Available<br/>Countries</li>
+
 									</ul>
 								</div>
 								<div class="item-right">
+                                    <h4>Min Deposit</h4>
 									<ul>
-										{% for c in obj.country.all %}
-										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
-										{% endfor %}
+                                        <li class="deposit">{% if obj.deposit %}{{ obj.deposit }}€{% else %}{%  trans 'No-limit' %}{% endif %}</li>
 									</ul>
 								</div>
 							</div>
-							<div class="item-info"> 
-								<div class="item-left games">
-									{% if obj.games %}
-									<ul>
-										<li>Games<br/>Count</li>
-										<li class="item-games">{{ obj.games }}+</li>
-									</ul>
-									{% endif %}
-								</div>
-								<div class="item-right">
-									{% if obj.bonus and obj.limit %}
-									<ul>
-										<li>Welcome<br/>Bonus</li>
-										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
-										<li class="item-bonus">{{ obj.limit }}€</li>
-									</ul>
-									{% endif %}
-								</div>								
-							</div>							
 						</div>
 						
 						<div class="buttons">
-							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">Review</a>
-							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Play Now</a>
+							<a class="first-button" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/">{%  trans 'Review' %}</a>
+							<a class="second-button" href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">{%  trans 'Play Now' %}</a>
 						</div>
 						
 						<!--<div><p>{{ obj.description }}</p></div>-->
@@ -216,14 +180,6 @@
 						<div id="openModal{{ obj.id }}" class="modalDialog">
 							{% include 'i_modal_main.html' %}
 						</div>
-						<!-- MODAL LICENSE -->
-						<div id="openModalLicense{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_license.html' %}
-						</div>
-						<!-- MODAL 18+ -->
-						<div id="openModalAlert{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_18.html' %}
-						</div>					
 						<!-- END MODAL -->
 					</li><!--Online Casino List Item end
 				-->{% endfor %}
@@ -233,10 +189,14 @@
 			{% block main_content %}
 				<div class="text-content">
 				{% if country %}
+                    {% if country.bonus_text %}
+						{{ country.bonus_text|safe }}
+					{% else %}
 						<h2>{% trans 'Top' %} {{ country.adj_name }} {% trans 'online casino bonuses' %}</h2>
 						<p>
 						{% trans 'The bonuses offered by' %} {{ country.adj_name }} {% trans 'online casinos from our list are absolutely honest and pure. The position in the rating for' %} {{ country.name }} {% trans 'is determined by the amount and maximum deposit of the bonus' %}.
 						</p>
+					{% endif %}
 				{% else %}
 						<h2>{% trans 'Top online casino bonuses' %}</h2>
 						<p>

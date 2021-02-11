@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from .models import Software, Country, Payment
-from django.http import HttpResponse
+from .models import Software, Country, Payment, Games
 
 def site_data(request):
-    return {'countries': Country.objects.all(), 'providers': Software.objects.all(), 'payments': Payment.objects.all() }
+    return {'countries': Country.objects.all(), 'providers': Software.objects.all(), 'payments': Payment.objects.all(),  'game_types': Games.objects.all()}
     
 def get_id(request, usr_id=0):
     if 'anid' in request.GET :

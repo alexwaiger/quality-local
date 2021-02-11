@@ -142,68 +142,36 @@
 						<div class="item-wrapper">
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Payment Methods</h4>
 									<ul>
-										{% if obj.fb or obj.twitter or obj.instagram %}
-										<li>Social<br/>Media</li>
-										{% endif %}
-										{% if obj.fb %}
-											<li>
-												<a href="{{ obj.fb }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/fb.png" alt="facebook" title="{{ obj.name }} Facebook Page" /></a>
-											</li>
-										{% endif %}									
-										{% if obj.twitter %}
-											<li>
-												<a href="{{ obj.twitter }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/twitter.png" alt="twitter" title="{{ obj.name }} Twitter Page" /></a>
-											</li>
-										{% endif %}
-										{% if obj.instagram %}
-											<li>
-												<a href="{{ obj.instagram }}" target="_blank" rel="nofollow"><img src="/media/img/icons/social/insta.png" alt="instagram" title="{{ obj.name }} Instagram Page" /></a>
-											</li>
-										{% endif %}
-									</ul>
-								</div>
-								<div class="item-right">
-									<ul>
-										<li>Valid<br/>License</li>
-										<li><a href="#openModalLicense{{ obj.id }}"><img src="/media/img/icons/license.png" alt="{{ obj.name }} casino license" title="License"/></a></li>
-										<li><a href="#openModalAlert{{ obj.id }}"><img src="/media/img/icons/18.png" alt="18+" title="18+"/></a></li>
+                                            {% for p in obj.pay.all %}
+                                                {% if forloop.counter <= 4 %}
+                                                    <li class="payments"><img src="{% if p.logo_inverted %}{{ p.logo_inverted.url }}{% else %}{{ p.logo.url }}{% endif %}" alt="{{ p.name }}" title="{{ p.name }}" /></li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                                {% if obj.pay.count > 4 %}
+                                                    <li><a class="count" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/#payments">+{{ obj.pay.count|add:-4 }}</a></li>
+                                                {% endif %}
 									</ul>
 								</div>
 							</div>
 							<div class="item-info">
 								<div class="item-left">
+                                    <h4>Withdraw Methods</h4>
 									<ul>
-										<li>Available<br/>Countries</li>
-									</ul>
-								</div>
-								<div class="item-right">
-									<ul>
-										{% for c in obj.country.all %}
-										<li><a href="/{{ LANGUAGE_CODE }}/{{ c.slug }}/"><img src="{{ c.flag.url }}" alt="{{ c.name }}" title="{{ c.name }}" /></a></li>
-										{% endfor %}
+                                            {% for p in obj.withdraw.all %}
+                                                {% if forloop.counter <= 4 %}
+                                                    <li class="payments"><img src="{% if p.logo_inverted %}{{ p.logo_inverted.url }}{% else %}{{ p.logo.url }}{% endif %}" alt="{{ p.name }}" title="{{ p.name }}" /></li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                                {% if obj.withdraw.count > 4 %}
+                                                    <li><a class="count" href="/{{ LANGUAGE_CODE }}/reviews/{{ obj.name | lower }}/#payouts">+{{ obj.withdraw.count|add:-4 }}</a></li>
+                                                {% endif %}
 									</ul>
 								</div>
 							</div>
-							<div class="item-info"> 
-								<div class="item-left games">
-									{% if obj.games %}
-									<ul>
-										<li>Payout<br/>Methods</li>
-										<li class="item-games"> {% if obj.pay.count < 1 %}1{% else %}{{ obj.pay.count }}{% endif %}</li>
-									</ul>
-									{% endif %}
-								</div>
-								<div class="item-right">
-									{% if obj.bonus and obj.limit %}
-									<ul>
-										<li>Welcome<br/>Bonus</li>
-										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
-										<li class="item-bonus">{{ obj.limit }}€</li>
-									</ul>
-									{% endif %}
-								</div>								
-							</div>							
 						</div>
 						
 						<div class="buttons">
@@ -215,14 +183,6 @@
 						<div id="openModal{{ obj.id }}" class="modalDialog">
 							{% include 'i_modal_main.html' %}
 						</div>
-						<!-- MODAL LICENSE -->
-						<div id="openModalLicense{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_license.html' %}
-						</div>
-						<!-- MODAL 18+ -->
-						<div id="openModalAlert{{ obj.id }}" class="modalDialog">
-							{% include 'i_modal_18.html' %}
-						</div>					
 						<!-- END MODAL -->
 					</li><!--Online Casino List Item end
 				-->{% endfor %}
@@ -232,10 +192,14 @@
 			{% block main_content %}
 				<div class="text-content">
 				{% if country %}
+                    {% if country.payout_text %}
+						{{ country.payout_text|safe }}
+					{% else %}
 						<h2>{% trans 'Top highest payouts' %} {{ country.adj_name }} {% trans 'online casinos' %}</h2>
 						<p>
 						{% trans 'All the proposed' %} {{ country.adj_name }} {% trans 'casinos honestly pay out winnings to their players, you can safely play in any of them. The rating online casino in' %} {{ country.name }} {% trans 'is based on the speed of withdrawal and the number of supported payment methods' %}.
 						</p>
+					{% endif %}
 				{% else %}
 						<h2>{% trans 'Top highest payout online casinos' %}</h2>
 						<p>

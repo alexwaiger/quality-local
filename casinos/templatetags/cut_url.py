@@ -39,3 +39,9 @@ def aff(value, usr_id=None):
     else:
         link = seo_link
     return link
+
+@register.filter
+@stringfilter
+def refilter(value, country):
+    list = value
+    return list

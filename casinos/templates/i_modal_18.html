@@ -3,7 +3,9 @@
 	<a href="#close-modal-alert" title="Close-modal" class="close-modal">✕</a>
 	<h3 class="title-modal"><span>{{ obj.name }} {% trans 'Casino' %}</span><br/>{% trans 'Age Limit' %}</h3>
 	<p class="modal">
-		{% trans 'Despite the fact that' %} {{ obj.name }} {% trans 'casino is a quality casino, you are responsible for all your actions. Therefore, You must be over 18 years old.' %}
+		{% trans 'Despite the fact that' %} {{ obj.name }} {% trans 'casino is a quality casino, you are responsible for all your actions. Therefore, You must be over' %}
+        <br/>
+        <span class="bold">{% trans '18 years old.' %}</span>
 	</p>
 	<a class="modal-button" href="#close-modal-alert" >{% trans 'I Understand' %}</a>
 </div>

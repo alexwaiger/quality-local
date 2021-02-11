@@ -14,7 +14,7 @@ from django.views.decorators.cache import never_cache
 
 def home(request):
     casino_list = Casino.objects.filter(is_active=True).order_by('-trust_score', 'position')
-    context = {'objects': casino_list }
+    context = {'objects': casino_list, 'count': 0 }
     return render(request, 'home.html', context)
 
 def contacts(request):
@@ -39,14 +39,14 @@ def countries(request, slug):
     try:
         country = Country.objects.get(slug=slug)
         casino_list = Casino.objects.filter(is_active=True, country=country).order_by('-trust_score', 'position')
-        context = {'objects': casino_list, 'country': country }
+        context = {'objects': casino_list, 'country': country, 'count': 1 }
     except:
         raise Http404()
     return render(request, 'home.html', context)
 
 def bonuses(request, slug=0):
     slug = slug
-    if slug == 0 :
+    if slug == 0:
         try:
             casino_list = Casino.objects.filter(is_active=True).order_by('-bonus_score', '-bonus', '-limit', 'position')
             context = {'objects': casino_list, }
@@ -63,7 +63,7 @@ def bonuses(request, slug=0):
 
 def payouts(request, slug=0):
     slug = slug
-    if slug == 0 :
+    if slug == 0:
         try:
             casino_list = Casino.objects.filter(is_active=True).annotate(count=Count('pay')).order_by('-support_score', '-count', 'position')
             context = {'objects': casino_list, }
@@ -80,7 +80,7 @@ def payouts(request, slug=0):
 
 def games(request, slug=0):
     slug = slug
-    if slug == 0 :
+    if slug == 0:
         try:
             casino_list = Casino.objects.filter(is_active=True).annotate(count=Count('soft')).order_by('-games_score', '-games', '-count', 'position')
             context = {'objects': casino_list, }
@@ -105,8 +105,8 @@ def reviews(request):
 
 def review(request, slug=0):
     slug = slug
-    if slug == slug.lower() :
-        if slug == 0 :
+    if slug == slug.lower():
+        if slug == 0:
             raise Http404()
         else:
             try:
