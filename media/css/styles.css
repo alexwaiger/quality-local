@@ -413,18 +413,18 @@ ul.list li.item {
 .list li.item .item-wrapper .item-info .games {
 	display: block;
 }
-.list li.item .item-wrapper .item-info .deposit {
-	font-family: 'Roboto Slab', serif;
-	font-size: 20px;
-	font-weight: bold;
-	color: #000000;
-	margin: 4px;
-}
 .list li.item .item-wrapper .item-info .fs {
 	font-family: 'Roboto Slab', serif;
 	font-size: 24px;
 	font-weight: bold;
 	color: #000000;
+	margin: 6px 5px 4px 0;
+}
+.list li.item .item-wrapper .item-info .deposit {
+	font-family: 'Roboto Slab', serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #05489d;
 	margin: 6px 5px 4px 0;
 }
 .list li.item .item-wrapper .item-info .item-games {
@@ -766,7 +766,7 @@ ul.list li.item {
 	vertical-align: top;
 }
 .review_wrap .review_payments {
-	display: inline-block;
+	display: table-cell;
 	width: 49%;
 	margin: 0;
 	text-align: center;
@@ -782,7 +782,7 @@ ul.list li.item {
 	width: 64px;
 }
 .review_wrap .review_withdraw {
-	display: inline-block;
+	display: table-cell;
 	width: 49%;
 	margin: 0;
 	text-align: center;

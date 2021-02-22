@@ -134,7 +134,7 @@
 							{% endif %}
 							<div class="rating-stars">
 								<img class="stars" src="/media/img/icons/stars/star-{{ obj.bonus_score }}.png" alt="Rating" />
-							</div>							
+							</div>
 							<div class="ankor">
 								<a href="{{ obj.id | aff:usr_id }}" target="_blank" rel="nofollow">Go to Website</a>
 							</div>
@@ -144,28 +144,22 @@
 								<div class="item-left">
                                     <h4>Welcome Pack</h4>
 									<ul>
-										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>Up to</span></li>
+										<li class="item-bonus-limit">{{ obj.bonus }}%<br/><span>{% trans 'Up to' %}</span></li>
 										<li class="item-bonus">{{ obj.limit }}€</li>
-									</ul>
-								</div>
-								<div class="item-right">
-                                    <h4>Free Spins</h4>
-									<ul>
                                         <li class="fs">{% if obj.fs %}+{{ obj.fs }} FS{% else %}{%  trans 'No FS' %}{% endif %}</li>
-									</ul>
-								</div>
-							</div>
-							<div class="item-info">
-								<div class="item-left">
-									<ul>
-
 									</ul>
 								</div>
 								<div class="item-right">
                                     <h4>Min Deposit</h4>
 									<ul>
-                                        <li class="deposit">{% if obj.deposit %}{{ obj.deposit }}€{% else %}{%  trans 'No-limit' %}{% endif %}</li>
+                                        <li class="deposit">{% if obj.deposit %}{{ obj.deposit }}€{% else %}{%  trans 'No' %}{% endif %}</li>
 									</ul>
+								</div>
+							</div>
+							<div class="item-info">
+								<div class="item-left">
+								</div>
+								<div class="item-right">
 								</div>
 							</div>
 						</div>
